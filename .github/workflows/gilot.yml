@@ -19,6 +19,11 @@ jobs:
           repository: vim/vim
           path: vim
           fetch-depth: 5000
+      - name: Switch to master at vim
+        run: |
+          cd vim
+          git checkout master
+          cd ..
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
