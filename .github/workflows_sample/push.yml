@@ -1,0 +1,44 @@
+name: "Push Update"
+on:
+  push:
+    branches:
+      - master
+jobs:
+  dict:
+    name: Dictionary update process
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: switch to master
+        run: |
+          git checkout master
+      - name: setup ruby
+        uses: actions/setup-ruby@v1
+      - name: dictonary data source get
+        run: bash ./source.sh
+      - name: generate dictionary
+        run: ruby ./generate.rb > skk-jisyo.imas
+      - name: UTF-8 with BOM generate
+        run: |
+          echo -en '\xef\xbb\xbf' >  skk-jisyo.imas.bom
+          cat skk-jisyo.imas      >> skk-jisyo.imas.bom
+      - name: generated dictonary commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -u .
+          git clean -df .
+          git commit -m "Update jisyo at push / `date "+%Y-%m-%d %H:%M:%S"`" || true
+      - name: push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: deploy gh-pages
+        uses: JamesIves/github-pages-deploy-action@releases/v2
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BASE_BRANCH: master
+          BRANCH: gh-pages
+          FOLDER: build
+          BUILD_SCRIPT: bash ./deploy.sh
