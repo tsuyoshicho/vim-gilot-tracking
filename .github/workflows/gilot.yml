@@ -22,7 +22,13 @@ jobs:
       - name: Switch to master at vim
         run: |
           cd vim
+          # git remote remove origin
+          # git remote add origin https://github.com/vim/vim.git
+          # git remote set-head origin master
+          # git fetch --depth=5000 origin
           git checkout master
+          echo pwd $(pwd)
+          git branch -va
           cd ..
       - name: Set up Python
         uses: actions/setup-python@v2
