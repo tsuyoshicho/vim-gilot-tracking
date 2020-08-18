@@ -1,8 +1,11 @@
 ---
 name: "gilot tracking schedule"
 on:
+  push:
+    branches:
+     - master
   schedule:
-  - cron: "27 14 * * sun"
+    - cron: "27 14 * * sun"
 jobs:
   vimgilot:
     name: fetch vim/vim and process gilot
