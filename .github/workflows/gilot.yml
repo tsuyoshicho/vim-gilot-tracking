@@ -22,13 +22,15 @@ jobs:
       - name: Switch to master at vim
         run: |
           cd vim
-          # git remote remove origin
-          # git remote add origin https://github.com/vim/vim.git
+
           git remote set-head origin master
-          # git fetch --depth=5000 origin
           git checkout master
+          # git fetch --depth=5000 origin
+
+          # echo check
           echo pwd $(pwd)
           git branch -va
+
           cd ..
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -42,8 +44,12 @@ jobs:
         run: |
           mkdir build
           cp template/index.html build/
-          gilot log vim/ > build/vim.csv
-          gilot plot -i build/vim.csv -o build/vim.png
+          gilot log --branch master vim/ > build/vim.csv
+          gilot info     -i build/vim.csv -o build/vim.info.json
+          gilot plot     -i build/vim.csv -o build/vim.plot.png
+          gilot hotspot  -i build/vim.csv -o build/vim.hotspot.png
+          gilot hotgraph -i build/vim.csv -o build/vim.hotgraph.png
+          gilot author   -i build/vim.csv -o build/vim.author.png
       - name: Deploy gh-pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
