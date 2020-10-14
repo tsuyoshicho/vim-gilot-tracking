@@ -44,8 +44,8 @@ jobs:
         run: |
           mkdir build
           cp template/index.html build/
-          gilot log --branch master vim/ > build/vim.csv
-          gilot info     -i build/vim.csv -o build/vim.info.json
+          gilot log --branch master vim/   > build/vim.csv
+          gilot info     -i build/vim.csv  > build/vim.info.json
           gilot plot     -i build/vim.csv -o build/vim.plot.png
           gilot hotspot  -i build/vim.csv -o build/vim.hotspot.png
           gilot hotgraph -i build/vim.csv -o build/vim.hotgraph.png
