@@ -44,12 +44,12 @@ jobs:
         run: |
           mkdir build
           cp template/index.html build/
-          gilot log --branch master vim/   > build/vim.csv
-          gilot info     -i build/vim.csv  > build/vim.info.json
-          gilot plot     -i build/vim.csv -o build/vim.plot.png
-          gilot hotspot  -i build/vim.csv -o build/vim.hotspot.png
-          gilot hotgraph -i build/vim.csv -o build/vim.hotgraph.png
-          gilot author   -i build/vim.csv -o build/vim.author.png
+          gilot log --branch master --full vim/ > build/vim.csv
+          gilot info          -i build/vim.csv  > build/vim.info.json
+          gilot plot          -i build/vim.csv -o build/vim.plot.png
+          gilot hotspot       -i build/vim.csv -o build/vim.hotspot.png
+          gilot hotgraph      -i build/vim.csv -o build/vim.hotgraph.png
+          gilot author        -i build/vim.csv -o build/vim.author.png
       - name: Deploy gh-pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
