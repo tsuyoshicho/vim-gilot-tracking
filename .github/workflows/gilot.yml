@@ -6,6 +6,8 @@ on:
      - master
   schedule:
     - cron: "27 14 * * sun"
+  workflow_dispatch:
+
 jobs:
   vimgilot:
     name: fetch vim/vim and process gilot
@@ -39,7 +41,7 @@ jobs:
       - name: Setup pip and gilot
         run: |
           sudo pip3 install -U pip
-          pip3 install git+https://github.com/hirokidaichi/gilot
+          pip3 install -r requirements.txt
       - name: Create gilot info and graph
         run: |
           mkdir build
