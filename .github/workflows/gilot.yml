@@ -37,7 +37,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: '3.9'
       - name: Setup pip and gilot
         run: |
           sudo pip3 install -U pip
@@ -46,12 +46,12 @@ jobs:
         run: |
           mkdir build
           cp template/index.html build/
-          gilot log --branch master --full vim/ > build/vim.csv
-          gilot info          -i build/vim.csv  > build/vim.info.json
-          gilot plot          -i build/vim.csv -o build/vim.plot.png
-          gilot hotspot       -i build/vim.csv  > build/vim.hotspot.txt
-          gilot hotgraph      -i build/vim.csv -o build/vim.hotgraph.png
-          gilot author        -i build/vim.csv -o build/vim.author.png
+          gilot log      --branch master --full vim/ -o build/vim.csv
+          gilot info     -i build/vim.csv             > build/vim.info.json
+          gilot plot     -i build/vim.csv            -o build/vim.plot.png
+          gilot hotspot  -i build/vim.csv            -o build/vim.hotspot.txt
+          gilot hotgraph -i build/vim.csv            -o build/vim.hotgraph.png
+          gilot author   -i build/vim.csv            -o build/vim.author.png
       - name: Deploy gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
