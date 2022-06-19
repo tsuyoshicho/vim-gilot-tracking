@@ -1,4 +1,4 @@
 ###### Requirements without Version Specifiers ######`
-gilot
 
 ###### Requirements with Version Specifiers ######`
+gilot==0.2.4
