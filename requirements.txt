@@ -118,7 +118,7 @@ python-dateutil==2.8.2
     #   jupyter-client
     #   matplotlib
     #   pandas
-python-levenshtein==0.12.2
+python-levenshtein==0.20.8
     # via gilot
 python-louvain==0.14
     # via gilot
