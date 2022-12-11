@@ -134,7 +134,7 @@ pyzmq==24.0.1
     #   jupyter-client
 scipy==1.9.3
     # via seaborn
-seaborn==0.10.1
+seaborn==0.12.1
     # via gilot
 six==1.16.0
     # via python-dateutil
