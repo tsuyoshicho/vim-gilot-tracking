@@ -142,7 +142,7 @@ smmap==5.0.0
     # via gitdb
 stack-data==0.6.2
     # via ipython
-timeout-decorator==0.4.1
+timeout-decorator==0.5.0
     # via gilot
 tornado==6.2
     # via
